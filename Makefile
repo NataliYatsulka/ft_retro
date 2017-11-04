@@ -17,18 +17,20 @@ SOURCE = main.cpp\
 		Player.cpp\
 		Enemy.cpp\
 		Game.cpp
+		# Window.cpp
 
 OBJECTS = $(SOURCE:%.cpp=%.o)
 
 CC = clang++
 FLAG = -Wall -Wextra -Werror
 
+NCURS = -lncurses
 .PHONY: all fast clean fclean
 
 all: main
 
 %.o: %.cpp
-	$(CC) -o $@ -c $< $(FLAG)
+	$(CC) -o $@ -c $< $(FLAG) $(NCURS)
 
 main: $(OBJECTS)
 	@$(CC) -o $(NAME) $(FLAG) $(OBJECTS)
