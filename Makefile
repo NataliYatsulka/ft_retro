@@ -21,8 +21,7 @@ NAME = ft_retro
 SRC = main.cpp\
 		Unit.cpp\
 		Player.cpp\
-		Enemy.cpp\
-		Game.cpp
+		Enemy.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

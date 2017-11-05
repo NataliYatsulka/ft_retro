@@ -16,17 +16,12 @@
 # include <iostream>
 # include <string>
 # include <cstdlib>
-// # include <ncurses.h>
-
-// # include "Enemy.hpp"
-// # include "Player.hpp"
-# include "Window.hpp"
-
 
 # define MAX_X 100
 # define MAX_Y 50
 # define MIN_X 0
 # define MIN_Y 0
+# define ENEMY 10
 
 class Unit
 {
@@ -35,10 +30,6 @@ public:
 	~Unit();
 	Unit(Unit const & src);
 	Unit& operator=(Unit const & src);
-
-	// int check_if_no_touch();
-	// int check_if_no_touch(Player &e, Enemy)
-
 
 	int getX() const;
 	int getY() const;

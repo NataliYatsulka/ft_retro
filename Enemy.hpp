@@ -14,7 +14,6 @@
 # define ENEMY_HPP
 
 # include "Unit.hpp"
-// # include "Player.hpp"
 
 class Enemy : public Unit
 {
@@ -28,8 +27,6 @@ public:
 
 	void random_set_cord();
 	void move_left();
-
-	// void check_cord();
 
 };
 

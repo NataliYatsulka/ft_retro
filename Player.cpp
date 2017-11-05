@@ -11,7 +11,7 @@
 // ************************************************************************** //
 
 #include "Player.hpp"
-// #include "Enemy.hpp"
+#include <ncurses.h>
 
 Player::Player(void)
 {
@@ -23,7 +23,7 @@ Player::Player(Player const & src)
 	*this = src;
 }
 
-Player::Player(int x, int y)// : _x(x), _y(y) {}
+Player::Player(int x, int y)
 {
 	this->_x = x;
 	this->_y = y;
@@ -48,12 +48,11 @@ void Player::shoot()
 
 void Player::shoot(Enemy &e)
 {
-	if (this->_x == e.getX())
+	if (this->_y == e.getY())
 	{
-		e.setX(-1);
-		e.setY(-1);
+		mvaddch(e.getY(), e.getX(), ' ' | A_INVIS);
+		e.random_set_cord();
 	}
-	std::cout << "SHOOOT" << std::endl;
 }
 
 void Player::move_left()
@@ -86,12 +85,3 @@ int Player::check_if_no_touch(Enemy &e)
 		return (-1);
 	return (1);
 }
-
-// int Player::check_if_no_touch(Player &p, Enemy &e)
-// {
-// 	if (abs(p.getX() - e.getX()) < 2)
-// 		return (-1);
-// 	if (abs(p.getY() - e.getY()) < 2)
-// 		return (-1);
-// 	return (1);
-// }

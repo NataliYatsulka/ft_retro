@@ -34,24 +34,6 @@ Unit& Unit::operator=(Unit const & src)
 	return (*this);
 }
 
-// int check_if_no_touch(Player &p, Enemy &e)
-// {
-// 	if (abs(p.getX() - e.getX()) == 1)
-// 		return (-1);
-// 	if (abs(p.getY() - e.getY()) == 1)
-// 		return (-1);
-// 	return (1);
-// }
-
-// int check_if_no_touch(int x_p, int y_p, int x_e, int y_e)
-// {
-// 	if (abs(x_p - x_e) < 4)
-// 		return (-1);
-// 	if (abs(y_p - y_e) < 2)
-// 		return (-1);
-// 	return (1);
-// }
-
 int Unit::getX() const
 {
 	return this->_x;
