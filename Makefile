@@ -22,15 +22,14 @@ SOURCE = main.cpp\
 OBJECTS = $(SOURCE:%.cpp=%.o)
 
 CC = clang++
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -I ./ -lncurses
 
-NCURS = -lncurses
 .PHONY: all fast clean fclean
 
 all: main
 
 %.o: %.cpp
-	$(CC) -o $@ -c $< $(FLAG) $(NCURS)
+	$(CC) -o $@ -c $< $(FLAG)
 
 main: $(OBJECTS)
 	@$(CC) -o $(NAME) $(FLAG) $(OBJECTS)

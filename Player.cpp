@@ -11,6 +11,7 @@
 // ************************************************************************** //
 
 #include "Player.hpp"
+// #include "Enemy.hpp"
 
 Player::Player(void)
 {
@@ -45,12 +46,12 @@ void Player::shoot()
 	std::cout << "SHOOOT" << std::endl;
 }
 
-void Player::shoot(Enemy &x, Enemy &y)
+void Player::shoot(Enemy &e)
 {
-	if (this->_x == x)
+	if (this->_x == e.getX())
 	{
-		x = -1;
-		y = -1;
+		e.setX(-1);
+		e.setY(-1);
 	}
 	std::cout << "SHOOOT" << std::endl;
 }

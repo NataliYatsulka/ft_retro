@@ -36,8 +36,8 @@ Unit& Unit::operator=(Unit const & src)
 
 void Unit::move_left()
 {
-	if (this->_y > MIN_Y)
-		this->_y -= 1;
+	if (this->_x > MIN_Y)
+		this->_x -= 1;
 }
 
 // int check_if_no_touch(Player &p, Enemy &e)

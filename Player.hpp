@@ -15,7 +15,7 @@
  
 # include "Unit.hpp"
 # include "Enemy.hpp"
-# include "Window.hpp"
+
 
 class Player : public Unit
 {
@@ -28,7 +28,7 @@ public:
 	~Player();
 
 	void shoot();
-	void shoot(Enemy &x, Enemy &y);
+	void shoot(Enemy &e);
 
 	void move_right();
 	void move_up();

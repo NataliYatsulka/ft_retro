@@ -18,8 +18,8 @@
 # include <cstdlib>
 // # include <ncurses.h>
 
-# include "Enemy.hpp"
-# include "Player.hpp"
+// # include "Enemy.hpp"
+// # include "Player.hpp"
 # include "Window.hpp"
 
 

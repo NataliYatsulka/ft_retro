@@ -13,7 +13,7 @@
 #include "Unit.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
-// #include <ncurses.h>
+#include <ncurses.h>
 
 void		scr_init( void )
 {
@@ -57,20 +57,50 @@ int	main(void)
 
 	// p.move_right();
 
-	// initscr(); /* Start curses mode */
-	// printw("Hello World !!!"); /* Print Hello World */
-	// refresh(); /* Print it on to the real screen */
-	
-	// while (1)
-	// {
-	// 	// scr_init();
-	// char ch = getch(); /* Wait for user input */
- // 	printw ("You pressed %d=%c\n", ch,ch);
- // 	refresh(); /* Print it on to the real screen */
- // 	if (ch == 27)
- // 		break;
-	// }
-	// endwin(); /* End curses mode */
+	initscr(); /* Start curses mode */
+	int row, col;
+	getmaxyx(stdscr, row,col);
+	printw("rwo= %d, col=%d", row, col);
+	noecho();
+	curs_set(0);
+	timeout(0);
+	while (1)
+	{
+		
+		int ch = getch(); /* Wait for user input */
+		// printw("ch=%d", ch);
+		mvprintw(p.getY(), p.getX(), "   ");	
+		// mvaddch(p.getY(), p.getX(), ' ' | A_INVIS);
+		// mvaddch(p.getY()-1, p.getX(), ' ' | A_INVIS);
+		// mvaddch(p.getY()+1, p.getX(), ' ' | A_INVIS);
+		switch(ch)
+		{
+			case (27):
+				endwin();
+				exit(-1);
+				break;
+			case 'w':
+				p.move_up();
+				break;
+			case 's':
+				p.move_down();
+				break;
+			case 'a':
+				p.move_left();
+				break;
+			case 'd':
+				p.move_right();
+				break;
+		}
+		mvprintw(p.getY(), p.getX(), "|*>");
+
+		// mvaddch(p.getY(), p.getX(), '+' | A_REVERSE);
+		// mvaddch(p.getY()-1, p.getX(), '-' | A_REVERSE);
+		// mvaddch(p.getY()+1, p.getX(), '+' | A_REVERSE);
+		refresh(); /* Print it on to the real screen */
+ 		
+	}
+	endwin(); /* End curses mode */
 	p.shoot();
 	return 0;
 }
