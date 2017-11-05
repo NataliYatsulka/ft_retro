@@ -23,7 +23,7 @@
 # include "Window.hpp"
 
 
-# define MAX_X 50
+# define MAX_X 100
 # define MAX_Y 50
 # define MIN_X 0
 # define MIN_Y 0
@@ -37,7 +37,9 @@ public:
 	Unit& operator=(Unit const & src);
 
 	void move_left();
-	int check_if_no_touch();
+	// int check_if_no_touch();
+	// int check_if_no_touch(Player &e, Enemy)
+
 
 	int getX() const;
 	int getY() const;

@@ -21,6 +21,7 @@ class Enemy : public Unit
 
 public:
 	Enemy(void);
+	Enemy(int x, int y);
 	Enemy(Enemy const & src);
 	Enemy& operator=(Enemy const & src);
 	~Enemy();

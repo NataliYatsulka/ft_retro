@@ -73,3 +73,12 @@ void Player::move_down()
 	if (this->_y < MAX_Y)
 		this->_y += 1;
 }
+
+int Player::check_if_no_touch(Player &p, Enemy &e)
+{
+	if (abs(p.getX() - e.getX()) < 2)
+		return (-1);
+	if (abs(p.getY() - e.getY()) < 2)
+		return (-1);
+	return (1);
+}

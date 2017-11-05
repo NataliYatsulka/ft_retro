@@ -18,6 +18,12 @@ Enemy::Enemy(void)
 	return ;
 }
 
+Enemy::Enemy(int x, int y)
+{
+	this->_x = x;
+	this->_y = y;
+}
+
 Enemy::Enemy(Enemy const & src)
 {
 	*this = src;
@@ -37,8 +43,8 @@ Enemy::~Enemy()
 
 void Enemy::random_set_cord()
 {
-	this->_x = random() % MAX_X;
-	this->_y = MAX_X;
+	this->_x = (random() % (MAX_X / 3)) + 2 * (MAX_X / 3 - 1) ;
+	this->_y = (random() % MAX_Y);
 }
 
 // void Enemy::check_cord()

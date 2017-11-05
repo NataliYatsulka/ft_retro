@@ -14,6 +14,8 @@
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include <ncurses.h>
+#include <ctime>
+
 
 void		scr_init( void )
 {
@@ -40,12 +42,15 @@ void		scr_init( void )
 int	main(void)
 {
 	// bool b = TRUE;
-	Player p(12, 2);
+	time_t e_move;	
 
 	Enemy mas_e[10];
+
 	for (int i = 0; i < 10; i++)
 	{
-		std::cout << i << " " << mas_e[i].getX() << ", " << mas_e[i].getY() << std::endl;
+		Enemy(mas_e[i].getX(), mas_e[i].getY());
+		mas_e[i].move_left();
+		// std::cout << i << " " << mas_e[i].getX() << ", " << mas_e[i].getY() << std::endl;
 	}
 
 	
@@ -58,21 +63,48 @@ int	main(void)
 	// p.move_right();
 
 	initscr(); /* Start curses mode */
+
+	
+
 	int row, col;
 	getmaxyx(stdscr, row,col);
-	printw("rwo= %d, col=%d", row, col);
-	noecho();
+	Player p(0, row / 2);
+	// printw("rwo= %d, col=%d", row, col);
+	noecho();	
 	curs_set(0);
 	timeout(0);
+
+	time(&e_move);
 	while (1)
 	{
-		
+		for (int i = 0; i < 10; i++)
+		{
+			if (p.check_if_no_touch(p, mas_e[i]) == 0)
+			{
+				printw("%d, px=%d,%d; ex=%d, %d", i, p.getX(), p.getY(), mas_e[i].getX(), mas_e[i].getY());
+				timeout(-1);
+				getch();
+				exit (-1);
+			}
+		}
+
+		if (difftime(time(0), e_move) >= 1)
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				mvaddch(mas_e[i].getY(), mas_e[i].getX(), ' ' | A_INVIS);
+				mas_e[i].move_left();
+				mvaddch(mas_e[i].getY(), mas_e[i].getX(), 'X' | A_BOLD);
+			}
+			time(&e_move);
+		}
 		int ch = getch(); /* Wait for user input */
 		// printw("ch=%d", ch);
 		mvprintw(p.getY(), p.getX(), "   ");	
 		// mvaddch(p.getY(), p.getX(), ' ' | A_INVIS);
 		// mvaddch(p.getY()-1, p.getX(), ' ' | A_INVIS);
 		// mvaddch(p.getY()+1, p.getX(), ' ' | A_INVIS);
+
 		switch(ch)
 		{
 			case (27):

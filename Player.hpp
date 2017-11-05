@@ -33,6 +33,8 @@ public:
 	void move_right();
 	void move_up();
 	void move_down();
+	int check_if_no_touch(Player &p, Enemy &e);
+
 
 };
 
