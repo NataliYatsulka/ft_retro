@@ -65,7 +65,9 @@ int	main(void)
 	initscr(); /* Start curses mode */
 
 	
-
+	start_color();
+	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
 	int row, col;
 	getmaxyx(stdscr, row,col);
 	Player p(0, row / 2);
@@ -79,9 +81,15 @@ int	main(void)
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			if (p.check_if_no_touch(p, mas_e[i]) == 0)
+			if (p.check_if_no_touch(mas_e[i]) < 0)
 			{
-				printw("%d, px=%d,%d; ex=%d, %d", i, p.getX(), p.getY(), mas_e[i].getX(), mas_e[i].getY());
+				for (int i = 0; i < 10; i++)
+				{
+					mvaddch(mas_e[i].getY(), mas_e[i].getX(), ' ' | A_INVIS);
+				}
+				mvprintw(p.getY(), p.getX(), "   ");	
+				mvprintw(0, 0, "GAME OVER");
+				// printw("%d, px=%d,%d; ex=%d, %d", i, p.getX(), p.getY(), mas_e[i].getX(), mas_e[i].getY());
 				timeout(-1);
 				getch();
 				exit (-1);
@@ -94,7 +102,9 @@ int	main(void)
 			{
 				mvaddch(mas_e[i].getY(), mas_e[i].getX(), ' ' | A_INVIS);
 				mas_e[i].move_left();
+				attron(COLOR_PAIR(1));
 				mvaddch(mas_e[i].getY(), mas_e[i].getX(), 'X' | A_BOLD);
+				attroff(COLOR_PAIR(1));
 			}
 			time(&e_move);
 		}
@@ -124,8 +134,9 @@ int	main(void)
 				p.move_right();
 				break;
 		}
-		mvprintw(p.getY(), p.getX(), "|*>");
-
+		attron(COLOR_PAIR(2));
+		mvprintw(p.getY(), p.getX(), "|*>" );
+		attroff(COLOR_PAIR(2));
 		// mvaddch(p.getY(), p.getX(), '+' | A_REVERSE);
 		// mvaddch(p.getY()-1, p.getX(), '-' | A_REVERSE);
 		// mvaddch(p.getY()+1, p.getX(), '+' | A_REVERSE);

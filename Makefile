@@ -10,37 +10,41 @@
 #                                                                              #
 #******************************************************************************#
 
+CC = clang++
+
+FAST = -Ofast
+
+FLAGS = -Wall -Wextra -Werror
+
 NAME = ft_retro
 
-SOURCE = main.cpp\
+SRC = main.cpp\
 		Unit.cpp\
 		Player.cpp\
 		Enemy.cpp\
 		Game.cpp
-		# Window.cpp
 
-OBJECTS = $(SOURCE:%.cpp=%.o)
+OBJ = $(SRC:.cpp=.o)
 
-CC = clang++
-FLAG = -Wall -Wextra -Werror -I ./ -lncurses
+INC = -I ./ -I ./vizu
 
-.PHONY: all fast clean fclean
+NCURSES = -lncurses
 
-all: main
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	@$(CC) $(FLAGS) $(INC) $(LIB) $(OBJ) $(NCURSES) -o $(NAME)
+	@echo  "\033[32mCompiled and created" $(NAME) "binary\033[0m"
 
 %.o: %.cpp
-	$(CC) -o $@ -c $< $(FLAG)
-
-main: $(OBJECTS)
-	@$(CC) -o $(NAME) $(FLAG) $(OBJECTS)
-
-fast: $(OBJECTS)
-	@$(CC) $(FLAG) -o $(NAME) $(OBJECTS)
+	@$(CC) $(INC) $(FAST) $(FLAGS) -c -o $@ $<
 
 clean:
-	@rm -f $(OBJECTS)
+	@rm -f $(OBJ)
+	@echo "\033[01;31m"$(NAME)" object files deleted\033[0m"
 
 fclean: clean
-	@rm -f $(OBJECTS) $(NAME)
+	@rm -f $(NAME) a.out
+	@echo "\033[01;31m"$(NAME)" binary file deleted\033[0m"
 
 re: fclean all

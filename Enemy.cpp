@@ -47,7 +47,10 @@ void Enemy::random_set_cord()
 	this->_y = (random() % MAX_Y);
 }
 
-// void Enemy::check_cord()
-// {
-
-// }
+void Enemy::move_left()
+{
+	if (this->_x > MIN_Y)
+		this->_x -= 1;
+	else
+		this->random_set_cord();
+}

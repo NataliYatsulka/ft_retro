@@ -36,7 +36,6 @@ public:
 	Unit(Unit const & src);
 	Unit& operator=(Unit const & src);
 
-	void move_left();
 	// int check_if_no_touch();
 	// int check_if_no_touch(Player &e, Enemy)
 

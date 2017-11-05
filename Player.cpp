@@ -56,6 +56,12 @@ void Player::shoot(Enemy &e)
 	std::cout << "SHOOOT" << std::endl;
 }
 
+void Player::move_left()
+{
+	if (this->_x > MIN_Y)
+		this->_x -= 1;
+}
+
 void Player::move_right()
 {
 	if (this->_x < MAX_X)
@@ -74,11 +80,18 @@ void Player::move_down()
 		this->_y += 1;
 }
 
-int Player::check_if_no_touch(Player &p, Enemy &e)
+int Player::check_if_no_touch(Enemy &e)
 {
-	if (abs(p.getX() - e.getX()) < 2)
-		return (-1);
-	if (abs(p.getY() - e.getY()) < 2)
+	if ((abs(this->getX() - e.getX()) + abs(this->getY() - e.getY()))< 2)
 		return (-1);
 	return (1);
 }
+
+// int Player::check_if_no_touch(Player &p, Enemy &e)
+// {
+// 	if (abs(p.getX() - e.getX()) < 2)
+// 		return (-1);
+// 	if (abs(p.getY() - e.getY()) < 2)
+// 		return (-1);
+// 	return (1);
+// }

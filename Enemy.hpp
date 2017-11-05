@@ -27,6 +27,8 @@ public:
 	~Enemy();
 
 	void random_set_cord();
+	void move_left();
+
 	// void check_cord();
 
 };
