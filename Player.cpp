@@ -45,6 +45,16 @@ void Player::shoot()
 	std::cout << "SHOOOT" << std::endl;
 }
 
+void Player::shoot(Enemy &x, Enemy &y)
+{
+	if (this->_x == x)
+	{
+		x = -1;
+		y = -1;
+	}
+	std::cout << "SHOOOT" << std::endl;
+}
+
 void Player::move_right()
 {
 	if (this->_x < MAX_X)

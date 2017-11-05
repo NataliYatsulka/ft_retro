@@ -16,7 +16,12 @@
 # include <iostream>
 # include <string>
 # include <cstdlib>
-# include <ncurses.h>
+// # include <ncurses.h>
+
+# include "Enemy.hpp"
+# include "Player.hpp"
+# include "Window.hpp"
+
 
 # define MAX_X 50
 # define MAX_Y 50

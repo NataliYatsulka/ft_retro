@@ -14,6 +14,7 @@
 
 Enemy::Enemy(void)
 {
+	this->random_set_cord();
 	return ;
 }
 

@@ -14,6 +14,8 @@
 # define ENEMY_HPP
 
 # include "Unit.hpp"
+# include "Player.hpp"
+
 
 class Enemy : public Unit
 {

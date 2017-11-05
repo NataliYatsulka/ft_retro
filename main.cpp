@@ -13,7 +13,7 @@
 #include "Unit.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
-#include <ncurses.h>
+// #include <ncurses.h>
 
 void		scr_init( void )
 {
@@ -39,25 +39,38 @@ void		scr_init( void )
 
 int	main(void)
 {
-	bool b = TRUE;
+	// bool b = TRUE;
 	Player p(12, 2);
 
-	p.move_right();
-
-	initscr(); /* Start curses mode */
-	printw("Hello World !!!"); /* Print Hello World */
-	refresh(); /* Print it on to the real screen */
-	
-	while (1)
+	Enemy mas_e[10];
+	for (int i = 0; i < 10; i++)
 	{
-		// scr_init();
-	char ch = getch(); /* Wait for user input */
- 	printw ("You pressed %d=%c\n", ch,ch);
- 	refresh(); /* Print it on to the real screen */
- 	if (ch == 27)
- 		break;
+		std::cout << i << " " << mas_e[i].getX() << ", " << mas_e[i].getY() << std::endl;
 	}
-	endwin(); /* End curses mode */
+
+	
+	// while (p.check_if_no_touch() > 0)
+	// {
+
+	// }
+
+
+	// p.move_right();
+
+	// initscr(); /* Start curses mode */
+	// printw("Hello World !!!"); /* Print Hello World */
+	// refresh(); /* Print it on to the real screen */
+	
+	// while (1)
+	// {
+	// 	// scr_init();
+	// char ch = getch(); /* Wait for user input */
+ // 	printw ("You pressed %d=%c\n", ch,ch);
+ // 	refresh(); /* Print it on to the real screen */
+ // 	if (ch == 27)
+ // 		break;
+	// }
+	// endwin(); /* End curses mode */
 	p.shoot();
 	return 0;
 }
